@@ -1,4 +1,4 @@
-package com.zsx.rxjavatest.presenter.base;
+package com.zsx.rxjavatest.presenter;
 
 import com.zsx.rxjavatest.ui.base.MvpView;
 

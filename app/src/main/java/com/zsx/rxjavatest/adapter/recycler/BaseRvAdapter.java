@@ -1,16 +1,17 @@
-package com.zsx.rxjavatest.ui.adapter.recycler;
+package com.zsx.rxjavatest.adapter.recycler;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
-import com.hgsoft.mylibrary.adapter.item.AbstractIAdapterItem;
-import com.hgsoft.mylibrary.adapter.item.IAdapterItem;
-import com.hgsoft.mylibrary.adapter.util.AdapterItemUtil;
+
+import com.zsx.rxjavatest.adapter.item.AbstractIAdapterItem;
+import com.zsx.rxjavatest.adapter.item.IAdapterItem;
+import com.zsx.rxjavatest.adapter.util.AdapterItemUtil;
 
 import java.util.List;
 
 /**
- * Created by Administrator on 2015/10/29.
+ * 多种类型的适配器
  */
 public abstract class BaseRvAdapter<T> extends RecyclerView.Adapter<RvViewHolder<T>> {
 

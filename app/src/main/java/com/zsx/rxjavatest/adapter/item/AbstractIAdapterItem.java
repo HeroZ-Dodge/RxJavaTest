@@ -1,4 +1,4 @@
-package com.zsx.rxjavatest.ui.adapter.item;
+package com.zsx.rxjavatest.adapter.item;
 
 import android.util.SparseArray;
 import android.view.View;
@@ -24,13 +24,13 @@ public abstract class AbstractIAdapterItem<T> implements IAdapterItem<T> {
     }
 
     @SuppressWarnings("unchecked")
-    public <T extends View> T findView(int id) {
+    public <V extends View> V findView(int id) {
         View view = mViews.get(id);
         if (view == null) {
             view = mRootView.findViewById(id);
             mViews.put(id, view);
         }
-        return (T) view;
+        return (V) view;
     }
 
     public TextView getTextView(int id) {

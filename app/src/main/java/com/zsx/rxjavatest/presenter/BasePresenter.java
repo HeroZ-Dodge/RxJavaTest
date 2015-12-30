@@ -1,4 +1,4 @@
-package com.zsx.rxjavatest.presenter.base;
+package com.zsx.rxjavatest.presenter;
 
 import com.zsx.rxjavatest.ui.base.MvpView;
 
@@ -7,7 +7,7 @@ import com.zsx.rxjavatest.ui.base.MvpView;
  * attachView() and detachView(). It also handles keeping a reference to the mvpView that
  * can be accessed from the children classes by calling getMvpView().
  */
-public class BasePresenter<T extends MvpView> implements Presenter<T> {
+public abstract class BasePresenter<T extends MvpView> implements Presenter<T> {
 
     private T mMvpView;
 

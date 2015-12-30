@@ -1,4 +1,4 @@
-package com.zsx.rxjavatest.ui.adapter.pager;
+package com.zsx.rxjavatest.adapter.pager;
 
 
 import android.support.v4.view.PagerAdapter;

@@ -1,4 +1,4 @@
-package com.zsx.rxjavatest.ui.adapter.item;
+package com.zsx.rxjavatest.adapter.item;
 
 import android.support.annotation.LayoutRes;
 import android.view.View;

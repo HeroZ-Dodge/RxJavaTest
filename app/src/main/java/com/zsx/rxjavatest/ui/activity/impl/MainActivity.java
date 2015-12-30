@@ -1,7 +1,6 @@
-package com.zsx.rxjavatest.ui.activity;
+package com.zsx.rxjavatest.ui.activity.impl;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -10,12 +9,13 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.zsx.rxjavatest.R;
-import com.zsx.rxjavatest.presenter.main.MainPresenter;
-import com.zsx.rxjavatest.ui.base.MainMvpActivity;
+import com.zsx.rxjavatest.presenter.impl.MainPresenter;
+import com.zsx.rxjavatest.ui.activity.BaseActivity;
+import com.zsx.rxjavatest.ui.activity.MainMvpActivity;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements MainMvpActivity {
+public class MainActivity extends BaseActivity implements MainMvpActivity {
 
     private MainPresenter mMainPresenter;
     private ListView mListView;
@@ -31,9 +31,18 @@ public class MainActivity extends AppCompatActivity implements MainMvpActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                showLoadingDialog();
                 mMainPresenter.loadData();
+                mMainPresenter.login();
+
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mMainPresenter.detachView();
     }
 
     @Override
