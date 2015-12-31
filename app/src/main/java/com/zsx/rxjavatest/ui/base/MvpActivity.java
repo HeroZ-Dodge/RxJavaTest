@@ -1,9 +1,9 @@
 package com.zsx.rxjavatest.ui.base;
 
 /**
- * Created by Administrator on 2015/12/28.
+ * MVP activity 基础接口
  */
-public interface ActivityMvpView extends MvpView {
+public interface MvpActivity extends MvpView {
 
     void showErrorView();
 

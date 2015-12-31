@@ -3,21 +3,15 @@ package com.zsx.rxjavatest.presenter.impl;
 import android.os.Handler;
 
 import com.google.gson.Gson;
-import com.squareup.okhttp.MediaType;
-import com.squareup.okhttp.RequestBody;
-import com.squareup.okhttp.ResponseBody;
 import com.zsx.rxjavatest.data.DataManager;
 import com.zsx.rxjavatest.data.api.ApiService;
+import com.zsx.rxjavatest.data.api.StringConverterFactory;
 import com.zsx.rxjavatest.presenter.BasePresenter;
-import com.zsx.rxjavatest.ui.activity.MainMvpActivity;
+import com.zsx.rxjavatest.ui.activity.AbMainActivity;
 
-import java.io.IOException;
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Map;
 
-import retrofit.Converter;
 import retrofit.GsonConverterFactory;
 import retrofit.Retrofit;
 import retrofit.RxJavaCallAdapterFactory;
@@ -25,10 +19,7 @@ import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-/**
- * Created by Administrator on 2015/12/28.
- */
-public class MainPresenter extends BasePresenter<MainMvpActivity> {
+public class MainActivityPresenter extends BasePresenter<AbMainActivity> {
 
     public void loadData() {
         DataManager.getTestData().subscribe(new Subscriber<List<String>>() {
@@ -57,6 +48,7 @@ public class MainPresenter extends BasePresenter<MainMvpActivity> {
     }
 
     public void login() {
+        getMvpView().showLoadingDialog();
         ApiService apiService = ApiService.Creator.newApiService();
         apiService.postData("username", "password")
                 .subscribeOn(Schedulers.io())
@@ -83,7 +75,7 @@ public class MainPresenter extends BasePresenter<MainMvpActivity> {
     public void loadString() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://10.173.235.82:30453/dataplatform/")
-                .addConverterFactory(new ToStringConverter())
+                .addConverterFactory(new StringConverterFactory())
                 .addConverterFactory(GsonConverterFactory.create(new Gson()))
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
@@ -109,41 +101,5 @@ public class MainPresenter extends BasePresenter<MainMvpActivity> {
                 });
     }
 
-
-    static class ToStringConverter extends Converter.Factory {
-
-        @Override
-        public Converter<ResponseBody, ?> fromResponseBody(Type type, Annotation[] annotations) {
-            //noinspection EqualsBetweenInconvertibleTypes
-            if (String.class.equals(type)) {
-                return new Converter<ResponseBody, Object>() {
-
-                    @Override
-                    public Object convert(ResponseBody responseBody) throws IOException {
-                        return responseBody.string();
-                    }
-                };
-            }
-
-            return null;
-        }
-
-        @Override
-        public Converter<?, RequestBody> toRequestBody(Type type, Annotation[] annotations) {
-            //noinspection EqualsBetweenInconvertibleTypes
-            if (String.class.equals(type)) {
-                return new Converter<String, RequestBody>() {
-
-                    @Override
-                    public RequestBody convert(String value) throws IOException {
-                        return RequestBody.create(MediaType.parse("text/plain"), value);
-                    }
-                };
-            }
-
-            return null;
-        }
-
-    }
 
 }

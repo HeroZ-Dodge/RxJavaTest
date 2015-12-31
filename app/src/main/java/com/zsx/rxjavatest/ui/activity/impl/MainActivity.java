@@ -9,21 +9,20 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.zsx.rxjavatest.R;
-import com.zsx.rxjavatest.presenter.impl.MainPresenter;
-import com.zsx.rxjavatest.ui.activity.BaseActivity;
-import com.zsx.rxjavatest.ui.activity.MainMvpActivity;
+import com.zsx.rxjavatest.presenter.impl.MainActivityPresenter;
+import com.zsx.rxjavatest.ui.activity.AbMainActivity;
 
 import java.util.List;
 
-public class MainActivity extends BaseActivity implements MainMvpActivity {
+public class MainActivity extends AbMainActivity {
 
-    private MainPresenter mMainPresenter;
+    private MainActivityPresenter mMainPresenter;
     private ListView mListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mMainPresenter = new MainPresenter();
+        mMainPresenter = new MainActivityPresenter();
         mMainPresenter.attachView(this);
         setContentView(R.layout.activity_main);
         mListView = (ListView) findViewById(R.id.list_view);
@@ -31,9 +30,10 @@ public class MainActivity extends BaseActivity implements MainMvpActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showLoadingDialog();
-                mMainPresenter.loadData();
-                mMainPresenter.login();
+                showErrorView();
+//                showLoadingDialog();
+//                mMainPresenter.loadData();
+//                mMainPresenter.login();
 
             }
         });
@@ -51,10 +51,6 @@ public class MainActivity extends BaseActivity implements MainMvpActivity {
         mListView.setAdapter(adapter);
     }
 
-    @Override
-    public void showErrorView() {
-
-    }
 
     private class MyAdapter extends BaseAdapter {
 

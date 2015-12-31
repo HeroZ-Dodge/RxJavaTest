@@ -7,12 +7,8 @@ import com.zsx.rxjavatest.data.local.PreferencesHelper;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
+import java.util.Map;
 
-import retrofit.Call;
-import retrofit.Callback;
-import retrofit.Response;
-import retrofit.Retrofit;
 import rx.Observable;
 
 /**
@@ -28,10 +24,7 @@ public class DataManager {
 
     private DataManager(Context context) {
         mPreferencesHelper = PreferencesHelper.getInstance(context);
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.173.235.82:30453/dataplatform/")
-                .build();
-        mApiService = retrofit.create(ApiService.class);
+        mApiService = ApiService.Creator.newApiService();
     }
 
     public static DataManager getInstance(Context context) {
@@ -62,7 +55,9 @@ public class DataManager {
         return Observable.just(data);
     }
 
-
+    public static Observable<Map> login() {
+        return mInstance.mApiService.getObservableData();
+    }
 
 
 }
