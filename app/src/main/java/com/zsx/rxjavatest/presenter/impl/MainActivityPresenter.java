@@ -7,7 +7,7 @@ import com.zsx.rxjavatest.data.DataManager;
 import com.zsx.rxjavatest.data.api.ApiService;
 import com.zsx.rxjavatest.data.api.StringConverterFactory;
 import com.zsx.rxjavatest.presenter.BasePresenter;
-import com.zsx.rxjavatest.ui.activity.AbMainActivity;
+import com.zsx.rxjavatest.ui.activity.IMainActivity;
 
 import java.util.List;
 import java.util.Map;
@@ -19,7 +19,7 @@ import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-public class MainActivityPresenter extends BasePresenter<AbMainActivity> {
+public class MainActivityPresenter extends BasePresenter<IMainActivity> {
 
     public void loadData() {
         DataManager.getTestData().subscribe(new Subscriber<List<String>>() {

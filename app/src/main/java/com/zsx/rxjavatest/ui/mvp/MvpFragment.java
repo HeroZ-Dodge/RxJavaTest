@@ -1,4 +1,4 @@
-package com.zsx.rxjavatest.ui.base;
+package com.zsx.rxjavatest.ui.mvp;
 
 /**
  * MVP Fragment 基础接口

@@ -10,11 +10,12 @@ import android.widget.TextView;
 
 import com.zsx.rxjavatest.R;
 import com.zsx.rxjavatest.presenter.impl.MainActivityPresenter;
-import com.zsx.rxjavatest.ui.activity.AbMainActivity;
+import com.zsx.rxjavatest.ui.activity.IMainActivity;
+import com.zsx.rxjavatest.ui.activity.BaseActivity;
 
 import java.util.List;
 
-public class MainActivity extends AbMainActivity {
+public class MainActivity extends BaseActivity implements IMainActivity {
 
     private MainActivityPresenter mMainPresenter;
     private ListView mListView;
@@ -31,10 +32,20 @@ public class MainActivity extends AbMainActivity {
             @Override
             public void onClick(View v) {
                 showErrorView();
-//                showLoadingDialog();
-//                mMainPresenter.loadData();
-//                mMainPresenter.login();
-
+            }
+        });
+        Button btn1 = (Button) findViewById(R.id.button1);
+        btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showEmptyView();
+            }
+        });
+        Button btn2 = (Button) findViewById(R.id.button2);
+        btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showContentView();
             }
         });
     }
@@ -50,7 +61,6 @@ public class MainActivity extends AbMainActivity {
         MyAdapter adapter = new MyAdapter(data);
         mListView.setAdapter(adapter);
     }
-
 
     private class MyAdapter extends BaseAdapter {
 

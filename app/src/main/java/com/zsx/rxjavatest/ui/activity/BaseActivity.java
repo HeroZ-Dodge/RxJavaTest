@@ -1,4 +1,4 @@
-package com.zsx.rxjavatest.ui.base;
+package com.zsx.rxjavatest.ui.activity;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
@@ -8,16 +8,16 @@ import android.view.View;
 import android.widget.FrameLayout;
 
 import com.zsx.rxjavatest.R;
-import com.zsx.rxjavatest.ui.base.MvpActivity;
+import com.zsx.rxjavatest.ui.mvp.MvpActivity;
 
 /**
  * Activity 抽象类
  */
 public abstract class BaseActivity extends AppCompatActivity implements MvpActivity {
 
-    private View mRootView;
     private FrameLayout mFrameLayout;
     protected View mErrorView;
+    protected View mEmptyView;
 
     protected ProgressDialog mLoadingDialog;
 
@@ -31,19 +31,21 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpActiv
     @Override
     public void setContentView(int layoutResID) {
         LayoutInflater inflater = getLayoutInflater();
-        mRootView = inflater.inflate(R.layout.base_activity, null);
-        mFrameLayout = (FrameLayout) mRootView.findViewById(R.id.frame_layout);
+        View rootView = inflater.inflate(R.layout.base_activity, null);
+        mFrameLayout = (FrameLayout) rootView.findViewById(R.id.frame_layout);
         inflater.inflate(layoutResID, mFrameLayout, true);
-        super.setContentView(mRootView);
+        super.setContentView(rootView);
         initBaseView();
     }
 
     private void initBaseView() {
+        mErrorView = findViewById(R.id.net_error_view_stub);
+        mEmptyView = findViewById(R.id.empty_view_stub);
         if (mLoadingDialog == null) {
             mLoadingDialog = new ProgressDialog(this);
             mLoadingDialog.setMessage("loading...");
         }
-        mErrorView = findViewById(R.id.net_error);
+
     }
 
 
@@ -51,6 +53,38 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpActiv
     public void showErrorView() {
         if (mErrorView != null) {
             mErrorView.setVisibility(View.VISIBLE);
+        }
+        if (mEmptyView != null) {
+            mEmptyView.setVisibility(View.GONE);
+        }
+        if (mFrameLayout != null) {
+            mFrameLayout.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void showEmptyView() {
+        if (mErrorView != null) {
+            mErrorView.setVisibility(View.GONE);
+        }
+        if (mEmptyView != null) {
+            mEmptyView.setVisibility(View.VISIBLE);
+        }
+        if (mFrameLayout != null) {
+            mFrameLayout.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void showContentView() {
+        if (mErrorView != null) {
+            mErrorView.setVisibility(View.GONE);
+        }
+        if (mEmptyView != null) {
+            mEmptyView.setVisibility(View.GONE);
+        }
+        if (mFrameLayout != null) {
+            mFrameLayout.setVisibility(View.VISIBLE);
         }
     }
 

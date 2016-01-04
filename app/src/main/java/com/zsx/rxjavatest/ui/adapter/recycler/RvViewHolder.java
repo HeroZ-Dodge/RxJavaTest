@@ -1,10 +1,10 @@
-package com.zsx.rxjavatest.adapter.recycler;
+package com.zsx.rxjavatest.ui.adapter.recycler;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-import com.zsx.rxjavatest.adapter.item.AbstractIAdapterItem;
+import com.zsx.rxjavatest.ui.adapter.item.AbstractIAdapterItem;
 
 
 /**

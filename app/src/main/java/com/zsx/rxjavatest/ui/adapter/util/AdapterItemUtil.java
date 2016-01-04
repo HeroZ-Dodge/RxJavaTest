@@ -1,4 +1,4 @@
-package com.zsx.rxjavatest.adapter.util;
+package com.zsx.rxjavatest.ui.adapter.util;
 
 import android.util.SparseArray;
 

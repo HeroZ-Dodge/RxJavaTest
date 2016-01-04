@@ -1,4 +1,4 @@
-package com.zsx.rxjavatest.ui.base;
+package com.zsx.rxjavatest.ui.mvp;
 
 /**
  * MVP activity 基础接口
@@ -6,6 +6,10 @@ package com.zsx.rxjavatest.ui.base;
 public interface MvpActivity extends MvpView {
 
     void showErrorView();
+
+    void showEmptyView();
+
+    void showContentView();
 
     void showLoadingDialog();
 

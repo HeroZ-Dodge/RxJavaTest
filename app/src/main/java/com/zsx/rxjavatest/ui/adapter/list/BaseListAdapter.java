@@ -1,4 +1,4 @@
-package com.zsx.rxjavatest.adapter.list;
+package com.zsx.rxjavatest.ui.adapter.list;
 
 import android.content.Context;
 import android.view.LayoutInflater;

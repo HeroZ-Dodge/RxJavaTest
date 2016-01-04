@@ -1,6 +1,6 @@
 package com.zsx.rxjavatest.presenter;
 
-import com.zsx.rxjavatest.ui.base.MvpView;
+import com.zsx.rxjavatest.ui.mvp.MvpView;
 
 /**
  * Base class that implements the Presenter interface and provides a base implementation for
