@@ -9,12 +9,15 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import com.zsx.rxjavatest.ui.expansion.ViewExpansionDelegate;
+import com.zsx.rxjavatest.ui.expansion.ViewExpansionDelegateProvider;
 
 /**
- * Created by Administrator on 2016/1/13.
+ * Fragment 抽象类型
  */
 public class BaseFragment extends Fragment implements Container {
 
+    private FrameLayout mContentParent;
+    private ViewExpansionDelegate mViewExpansionDelegate;
 
     @Nullable
     @Override
@@ -34,11 +37,14 @@ public class BaseFragment extends Fragment implements Container {
 
     @Override
     public FrameLayout getContentView() {
-        return null;
+        return mContentParent;
     }
 
     @Override
     public ViewExpansionDelegate getViewExpansionDelegate() {
-        return null;
+        if (mViewExpansionDelegate == null) {
+            mViewExpansionDelegate = ViewExpansionDelegateProvider.DEFAULT.createViewExpansionDelegate(this);
+        }
+        return mViewExpansionDelegate;
     }
 }

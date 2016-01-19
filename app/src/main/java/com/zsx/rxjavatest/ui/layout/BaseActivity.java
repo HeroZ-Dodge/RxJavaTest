@@ -8,7 +8,7 @@ import com.zsx.rxjavatest.ui.expansion.ViewExpansionDelegate;
 import com.zsx.rxjavatest.ui.expansion.ViewExpansionDelegateProvider;
 
 /**
- * Created by Administrator on 2016/1/12.
+ * Activity 抽象类型
  */
 public class BaseActivity extends AppCompatActivity implements Container {
 
@@ -26,6 +26,14 @@ public class BaseActivity extends AppCompatActivity implements Container {
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mViewExpansionDelegate != null) {
+            mViewExpansionDelegate.destroy();
+        }
+    }
+
+    @Override
     public FrameLayout getContentView() {
         return mContentParent;
     }
@@ -37,6 +45,5 @@ public class BaseActivity extends AppCompatActivity implements Container {
         }
         return mViewExpansionDelegate;
     }
-
 
 }

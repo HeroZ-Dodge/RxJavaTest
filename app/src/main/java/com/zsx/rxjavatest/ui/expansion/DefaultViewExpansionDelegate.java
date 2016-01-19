@@ -11,7 +11,7 @@ import com.zsx.rxjavatest.ui.layout.Container;
  */
 public class DefaultViewExpansionDelegate extends ViewExpansionDelegate {
 
-    private ViewConfig mConfig;
+    private ViewConfig mConfig; // 扩展视图配置
     private ProgressDialog mProgressDialog;
     private View mProgressPage;
     private View mErrorPage;

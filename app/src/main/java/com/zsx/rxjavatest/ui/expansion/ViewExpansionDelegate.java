@@ -36,6 +36,11 @@ public abstract class ViewExpansionDelegate {
         return mContentView;
     }
 
+    public final void destroy() {
+        mContainer = null;
+        mContentView = null;
+    }
+
     public abstract void showProgressDialog(String title);
 
     public abstract void dismissProgressDialog();
