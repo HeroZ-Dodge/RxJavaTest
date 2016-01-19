@@ -15,16 +15,13 @@ import com.zsx.rxjavatest.ui.activity.BaseActivity;
 
 import java.util.List;
 
-public class MainActivity extends BaseActivity implements IMainActivity {
+public class MainActivity extends BaseActivity<MainActivityPresenter> implements IMainActivity {
 
-    private MainActivityPresenter mMainPresenter;
     private ListView mListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mMainPresenter = new MainActivityPresenter();
-        mMainPresenter.attachView(this);
         setContentView(R.layout.activity_main);
         mListView = (ListView) findViewById(R.id.list_view);
         Button btn = (Button) findViewById(R.id.button);
@@ -51,9 +48,8 @@ public class MainActivity extends BaseActivity implements IMainActivity {
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        mMainPresenter.detachView();
+    public MainActivityPresenter getPresenter() {
+        return new MainActivityPresenter();
     }
 
     @Override

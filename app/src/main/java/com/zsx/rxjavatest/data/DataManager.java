@@ -23,7 +23,7 @@ public class DataManager {
 
 
     private DataManager(Context context) {
-        mPreferencesHelper = PreferencesHelper.getInstance(context);
+        mPreferencesHelper = PreferencesHelper.getInstance();
         mApiService = ApiService.Creator.newApiService();
     }
 
@@ -41,7 +41,7 @@ public class DataManager {
     }
 
     public static String getString (Context context, String key) {
-        return PreferencesHelper.getString(context, key);
+        return PreferencesHelper.getString(key);
     }
 
 

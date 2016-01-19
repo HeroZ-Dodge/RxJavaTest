@@ -8,25 +8,32 @@ import android.view.View;
 import android.widget.FrameLayout;
 
 import com.zsx.rxjavatest.R;
+import com.zsx.rxjavatest.presenter.Presenter;
 import com.zsx.rxjavatest.ui.mvp.MvpActivity;
 
 /**
  * Activity 抽象类
  */
-public abstract class BaseActivity extends AppCompatActivity implements MvpActivity {
+public abstract class BaseActivity<P extends Presenter> extends AppCompatActivity implements MvpActivity {
 
-    private FrameLayout mFrameLayout;
+    public P mPresenter;
+
+    protected FrameLayout mFrameLayout;
     protected View mErrorView;
     protected View mEmptyView;
-
     protected ProgressDialog mLoadingDialog;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        mPresenter = getPresenter();
+        if (mPresenter == null) {
+            mPresenter.attachView(this);
+        }
     }
+
+    public abstract P getPresenter();
 
     @Override
     public void setContentView(int layoutResID) {
@@ -48,6 +55,13 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpActiv
 
     }
 
+    @Override
+    protected void onDestroy() {
+        if (mPresenter != null) {
+            mPresenter.detachView();
+        }
+        super.onDestroy();
+    }
 
     @Override
     public void showErrorView() {
@@ -101,4 +115,5 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpActiv
             mLoadingDialog.dismiss();
         }
     }
+
 }
