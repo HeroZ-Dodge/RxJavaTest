@@ -12,9 +12,10 @@ import com.zsx.rxjavatest.ui.layout.Container;
 public class DefaultViewExpansionDelegate extends ViewExpansionDelegate {
 
     private ViewConfig mConfig; // 扩展视图配置
-    private ProgressDialog mProgressDialog;
-    private View mProgressPage;
-    private View mErrorPage;
+    private ProgressDialog mProgressDialog; // loading 对话框
+    private View mProgressPage; // loading 页面
+    private View mErrorPage; // 错误页面
+    private OnRetryListener mRetryListener; // 重试监听器
 
     public DefaultViewExpansionDelegate(Container container) {
         super(container);
@@ -29,6 +30,16 @@ public class DefaultViewExpansionDelegate extends ViewExpansionDelegate {
     @NonNull
     private ViewConfig getDefaultConfig() {
         return new ViewConfig();
+    }
+
+    @Override
+    public void setOnRetryListener(OnRetryListener listener) {
+        this.mRetryListener = listener;
+    }
+
+    @Override
+    public OnRetryListener getOnRetryListener() {
+        return mRetryListener;
     }
 
     @Override
@@ -83,6 +94,14 @@ public class DefaultViewExpansionDelegate extends ViewExpansionDelegate {
         if (mErrorPage.getParent() == null) {
             getContentView().addView(mErrorPage);
         }
+        mErrorPage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mRetryListener != null) {
+                    mRetryListener.onRetryClick(v);
+                }
+            }
+        });
         return mErrorPage;
     }
 
@@ -92,4 +111,5 @@ public class DefaultViewExpansionDelegate extends ViewExpansionDelegate {
             getContentView().removeView(mErrorPage);
         }
     }
+
 }

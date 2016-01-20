@@ -125,7 +125,7 @@ public class MyRecyclerView extends RecyclerView {
 
     public ProgressBar getFootProgress() {
         if (mProgressBar == null) {
-            if (mFootViews != null) {
+            if (mFootViews != null && mFootViews.size() > 0) {
                 mProgressBar = (ProgressBar) mFootViews.get(0).findViewById(R.id.progress_bar);
             }
         }

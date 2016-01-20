@@ -9,9 +9,9 @@ import com.zsx.rxjavatest.R;
  */
 public class ViewConfig {
     String mProgressMsg = "正在加载...";
-    int mProgressPageRes = R.layout.empty_view;
+    int mProgressPageRes = R.layout.progress_page;
     View mProgressPage;
-    int mErrorPageRes = R.layout.net_error_view;
+    int mErrorPageRes = R.layout.error_page;
     View mErrorPage;
 
 }

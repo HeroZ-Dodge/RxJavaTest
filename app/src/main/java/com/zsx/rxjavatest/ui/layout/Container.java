@@ -5,7 +5,7 @@ import android.widget.FrameLayout;
 import com.zsx.rxjavatest.ui.expansion.ViewExpansionDelegate;
 
 /**
- * Activity,Fragment 接口
+ * Activity,Fragment 接口 (容器)
  */
 public interface Container {
 

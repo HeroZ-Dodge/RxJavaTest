@@ -53,8 +53,12 @@ public abstract class ViewExpansionDelegate {
 
     public abstract void dismissErrorPage();
 
+    public abstract void setOnRetryListener(OnRetryListener listener);
+
+    public abstract OnRetryListener getOnRetryListener();
+
     public interface OnRetryListener {
-        void onRetryClick();
+        void onRetryClick(View v);
     }
 
 

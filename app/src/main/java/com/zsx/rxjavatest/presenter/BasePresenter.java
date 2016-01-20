@@ -1,32 +1,32 @@
 package com.zsx.rxjavatest.presenter;
 
-import com.zsx.rxjavatest.ui.mvp.MvpView;
+import com.zsx.rxjavatest.ui.layout.Container;
 
 /**
  * Base class that implements the Presenter interface and provides a base implementation for
  * attachView() and detachView(). It also handles keeping a reference to the mvpView that
  * can be accessed from the children classes by calling getMvpView().
  */
-public abstract class BasePresenter<T extends MvpView> implements Presenter<T> {
+public abstract class BasePresenter<T extends Container> implements Presenter<T> {
 
-    private T mMvpView;
+    private T mContainer;
 
     @Override
-    public void attachView(T mvpView) {
-        mMvpView = mvpView;
+    public void attachView(T container) {
+        mContainer = container;
     }
 
     @Override
     public void detachView() {
-        mMvpView = null;
+        mContainer = null;
     }
 
     public boolean isViewAttached() {
-        return mMvpView != null;
+        return mContainer != null;
     }
 
-    public T getMvpView() {
-        return mMvpView;
+    public T getContainer() {
+        return mContainer;
     }
 
     public void checkViewAttached() {
