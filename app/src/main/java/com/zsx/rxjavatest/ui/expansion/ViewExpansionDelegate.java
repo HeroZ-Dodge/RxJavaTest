@@ -1,28 +1,28 @@
 package com.zsx.rxjavatest.ui.expansion;
 
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 
-import com.zsx.rxjavatest.ui.layout.Container;
+import com.zsx.rxjavatest.ui.layout.ViewLayer;
 
 /**
  * 扩展视图抽象
  */
 public abstract class ViewExpansionDelegate {
 
-    private Container mContainer;
+    private ViewLayer mViewLayer;
     private FrameLayout mContentView;
     private LayoutInflater mInflater;
 
-
-    public ViewExpansionDelegate(Container container) {
-        this.mContainer = container;
-        this.mContentView = container.getContentView();
+    public ViewExpansionDelegate(ViewLayer viewLayer) {
+        this.mViewLayer = viewLayer;
+        this.mContentView = viewLayer.getContentView();
     }
 
-    public final Container getContainer() {
-        return mContainer;
+    public final ViewLayer getViewLayer() {
+        return mViewLayer;
     }
 
     public final LayoutInflater getInflater() {
@@ -32,12 +32,13 @@ public abstract class ViewExpansionDelegate {
         return mInflater;
     }
 
+    @NonNull
     public final FrameLayout getContentView() {
         return mContentView;
     }
 
     public final void destroy() {
-        mContainer = null;
+        mViewLayer = null;
         mContentView = null;
     }
 
@@ -57,7 +58,7 @@ public abstract class ViewExpansionDelegate {
 
     public abstract OnRetryListener getOnRetryListener();
 
-    public interface OnRetryListener {
+    public interface OnRetryListener { // 网络异常时，点击重试监听
         void onRetryClick(View v);
     }
 

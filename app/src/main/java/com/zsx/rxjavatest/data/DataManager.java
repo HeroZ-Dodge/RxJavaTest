@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.zsx.rxjavatest.data.api.ApiService;
 import com.zsx.rxjavatest.data.local.PreferencesHelper;
+import com.zsx.rxjavatest.data.model.UserInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,5 +60,13 @@ public class DataManager {
         return mInstance.mApiService.getObservableData();
     }
 
+
+    public static UserInfo getUserInfo(String accessToken) {
+        return new UserInfo();
+    }
+
+    public static String login(String userName, String pw) {
+        return "";
+    }
 
 }

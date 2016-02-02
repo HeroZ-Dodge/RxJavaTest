@@ -1,6 +1,7 @@
 package com.zsx.rxjavatest.ui.layout;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -14,7 +15,7 @@ import com.zsx.rxjavatest.ui.expansion.ViewExpansionDelegateProvider;
 /**
  * Fragment 抽象类型
  */
-public class BaseFragment extends Fragment implements Container {
+public class BaseFragment extends Fragment implements ViewLayer {
 
     private FrameLayout mContentParent;
     private ViewExpansionDelegate mViewExpansionDelegate;
@@ -35,6 +36,7 @@ public class BaseFragment extends Fragment implements Container {
         super.onSaveInstanceState(outState);
     }
 
+    @NonNull
     @Override
     public FrameLayout getContentView() {
         return mContentParent;
@@ -46,5 +48,10 @@ public class BaseFragment extends Fragment implements Container {
             mViewExpansionDelegate = ViewExpansionDelegateProvider.DEFAULT.createViewExpansionDelegate(this);
         }
         return mViewExpansionDelegate;
+    }
+
+    @Override
+    public boolean isFinishing() {
+        return false;
     }
 }

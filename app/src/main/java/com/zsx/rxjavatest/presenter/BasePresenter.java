@@ -1,32 +1,34 @@
 package com.zsx.rxjavatest.presenter;
 
-import com.zsx.rxjavatest.ui.layout.Container;
+import com.zsx.rxjavatest.ui.layout.ViewLayer;
+import com.zsx.rxjavatest.ui.layout.ViewLayerProxy;
 
 /**
  * Base class that implements the Presenter interface and provides a base implementation for
  * attachView() and detachView(). It also handles keeping a reference to the mvpView that
  * can be accessed from the children classes by calling getMvpView().
  */
-public abstract class BasePresenter<T extends Container> implements Presenter<T> {
+public abstract class BasePresenter<V extends ViewLayer> implements Presenter<V> {
 
-    private T mContainer;
+    private V mViewLayer; // 视图层
 
     @Override
-    public void attachView(T container) {
-        mContainer = container;
+    public void attachView(V viewLayer) {
+        mViewLayer = (V) ViewLayerProxy.createProxy(viewLayer);
+//        mViewLayer = viewLayer;
     }
 
     @Override
     public void detachView() {
-        mContainer = null;
+        mViewLayer = null;
     }
 
     public boolean isViewAttached() {
-        return mContainer != null;
+        return mViewLayer != null;
     }
 
-    public T getContainer() {
-        return mContainer;
+    public V getViewLayer() {
+        return mViewLayer;
     }
 
     public void checkViewAttached() {
@@ -35,7 +37,7 @@ public abstract class BasePresenter<T extends Container> implements Presenter<T>
 
     public static class MvpViewNotAttachedException extends RuntimeException {
         public MvpViewNotAttachedException() {
-            super("Please call Presenter.attachView(MvpView) before" +
+            super("Please call Presenter.attachView(ViewLayer) before" +
                     " requesting data to the Presenter");
         }
     }

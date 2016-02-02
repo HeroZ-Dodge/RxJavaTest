@@ -4,7 +4,7 @@ import android.app.ProgressDialog;
 import android.support.annotation.NonNull;
 import android.view.View;
 
-import com.zsx.rxjavatest.ui.layout.Container;
+import com.zsx.rxjavatest.ui.layout.ViewLayer;
 
 /**
  * 默认扩展视图类
@@ -17,13 +17,13 @@ public class DefaultViewExpansionDelegate extends ViewExpansionDelegate {
     private View mErrorPage; // 错误页面
     private OnRetryListener mRetryListener; // 重试监听器
 
-    public DefaultViewExpansionDelegate(Container container) {
-        super(container);
+    public DefaultViewExpansionDelegate(ViewLayer viewLayer) {
+        super(viewLayer);
         mConfig = getDefaultConfig();
     }
 
-    public DefaultViewExpansionDelegate(Container container, ViewConfig config) {
-        super(container);
+    public DefaultViewExpansionDelegate(ViewLayer viewLayer, ViewConfig config) {
+        super(viewLayer);
         this.mConfig = config;
     }
 
@@ -97,6 +97,7 @@ public class DefaultViewExpansionDelegate extends ViewExpansionDelegate {
         mErrorPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                dismissErrorPage(); // 关闭错误页面
                 if (mRetryListener != null) {
                     mRetryListener.onRetryClick(v);
                 }

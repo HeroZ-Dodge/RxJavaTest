@@ -2,11 +2,13 @@ package com.zsx.rxjavatest.ui.activity.impl;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.zsx.rxjavatest.R;
+import com.zsx.rxjavatest.presenter.BasePresenter;
 import com.zsx.rxjavatest.ui.adapter.recycler.BaseQuickAdapter;
 import com.zsx.rxjavatest.ui.adapter.recycler.ViewHolderHelper;
 import com.zsx.rxjavatest.ui.layout.BaseActivity;
@@ -83,13 +85,17 @@ public class MyActivity extends BaseActivity {
         mRecyclerView.setAdapter(adapter);
     }
 
+    @NonNull
+    @Override
+    protected BasePresenter createPresenter() {
+        return null;
+    }
+
     public void onButtonClick(View view) {
         int id = view.getId();
         if (id == R.id.btn1) {
-//            getViewExpansionDelegate().showProgressDialog("title");
             mRecyclerView.setLoadStatus(MyRecyclerView.LOADING_STATUS_DEFAULT);
         } else {
-//            getViewExpansionDelegate().showErrorPage();
             mRecyclerView.setLoadStatus(MyRecyclerView.LOADING_STATUS_FINISH);
         }
 
