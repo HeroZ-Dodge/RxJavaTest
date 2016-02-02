@@ -5,7 +5,7 @@ import com.zsx.rxjavatest.ui.layout.ViewLayer;
 /**
  * Created by Administrator on 2016/1/29.
  */
-public interface  OneTestActivity extends ViewLayer {
+public interface ITestTwoActivity extends ViewLayer {
 
 
      void onTest();

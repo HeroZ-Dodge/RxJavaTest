@@ -7,13 +7,13 @@ import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 
 import com.zsx.rxjavatest.R;
-import com.zsx.rxjavatest.presenter.impl.OneTestPresenter;
-import com.zsx.rxjavatest.presenter.impl.TestPresenter;
-import com.zsx.rxjavatest.ui.activity.ITestActivity;
+import com.zsx.rxjavatest.presenter.impl.TestOnePresenter;
+import com.zsx.rxjavatest.ui.activity.ITestOneActivity;
 import com.zsx.rxjavatest.ui.adapter.recycler.BaseQuickAdapter;
 import com.zsx.rxjavatest.ui.adapter.recycler.ViewHolderHelper;
 import com.zsx.rxjavatest.ui.layout.BaseActivity;
@@ -24,7 +24,7 @@ import in.srain.cube.views.ptr.PtrClassicFrameLayout;
 import in.srain.cube.views.ptr.PtrFrameLayout;
 import in.srain.cube.views.ptr.PtrHandler;
 
-public class TestActivity extends BaseActivity<TestPresenter> implements ITestActivity {
+public class TestOneActivity extends BaseActivity<TestOnePresenter> implements ITestOneActivity {
 
     private PtrClassicFrameLayout mPtrFrame;
     private RecyclerView mRecyclerView;
@@ -77,6 +77,8 @@ public class TestActivity extends BaseActivity<TestPresenter> implements ITestAc
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         Button button = (Button) findViewById(R.id.btn1);
         button.setText("第一个Activity");
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
     }
 
 
@@ -84,7 +86,7 @@ public class TestActivity extends BaseActivity<TestPresenter> implements ITestAc
         int id = view.getId();
         switch (id) {
             case R.id.btn1:
-                Intent intent = new Intent(this, OneTestActivityImpl.class);
+                Intent intent = new Intent(this, TestTwoActivity.class);
                 startActivity(intent);
                 break;
 
@@ -107,8 +109,8 @@ public class TestActivity extends BaseActivity<TestPresenter> implements ITestAc
 
     @NonNull
     @Override
-    protected TestPresenter createPresenter() {
-        TestPresenter presenter = new TestPresenter();
+    protected TestOnePresenter createPresenter() {
+        TestOnePresenter presenter = new TestOnePresenter();
         presenter.attachView(this);
         return presenter;
     }

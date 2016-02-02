@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by Administrator on 2016/1/19.
  */
-public interface ITestActivity extends ViewLayer {
+public interface ITestOneActivity extends ViewLayer {
 
     void showList(List<String> list);
 

@@ -3,8 +3,7 @@ package com.zsx.rxjavatest.presenter.impl;
 import android.os.Handler;
 
 import com.zsx.rxjavatest.presenter.BasePresenter;
-import com.zsx.rxjavatest.ui.activity.ITestActivity;
-import com.zsx.rxjavatest.ui.activity.impl.TestActivity;
+import com.zsx.rxjavatest.ui.activity.ITestOneActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +11,7 @@ import java.util.List;
 /**
  * Created by Administrator on 2016/1/20.
  */
-public class TestPresenter extends BasePresenter<ITestActivity> {
+public class TestOnePresenter extends BasePresenter<ITestOneActivity> {
 
     public List<String> getList() {
         List<String> stringList = new ArrayList<>();

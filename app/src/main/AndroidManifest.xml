@@ -13,7 +13,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
 
-        <activity android:name=".ui.activity.impl.TestActivity">
+        <activity android:name=".ui.activity.impl.TestOneActivity">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,7 +23,7 @@
 
         </activity>
 
-        <activity android:name=".ui.activity.impl.OneTestActivityImpl"/>
+        <activity android:name=".ui.activity.impl.TestTwoActivity"/>
 
     </application>
 
