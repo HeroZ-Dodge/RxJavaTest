@@ -33,4 +33,9 @@ public class TestOnePresenter extends BasePresenter<ITestOneActivity> {
         }, 2000);
     }
 
+
+    public void downloadApp() {
+
+    }
+
 }

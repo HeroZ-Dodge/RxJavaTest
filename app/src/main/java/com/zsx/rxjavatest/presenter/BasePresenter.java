@@ -1,5 +1,7 @@
 package com.zsx.rxjavatest.presenter;
 
+import android.content.Context;
+
 import com.zsx.rxjavatest.ui.layout.ViewLayer;
 import com.zsx.rxjavatest.ui.layout.ViewLayerProxy;
 
@@ -10,11 +12,13 @@ import com.zsx.rxjavatest.ui.layout.ViewLayerProxy;
  */
 public abstract class BasePresenter<V extends ViewLayer> implements Presenter<V> {
 
+    private Context mContext;
     private V mViewLayer; // 视图层
 
     @Override
     public void attachView(V viewLayer) {
         mViewLayer = (V) ViewLayerProxy.createProxy(viewLayer);
+        mContext = viewLayer.getContentView().getContext();
 //        mViewLayer = viewLayer;
     }
 
@@ -29,6 +33,10 @@ public abstract class BasePresenter<V extends ViewLayer> implements Presenter<V>
 
     public V getViewLayer() {
         return mViewLayer;
+    }
+
+    public Context getContext() {
+        return mContext;
     }
 
     public void checkViewAttached() {
