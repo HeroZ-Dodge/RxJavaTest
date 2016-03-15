@@ -16,10 +16,9 @@ public interface ViewLayer {
     /**
      * 获取页面扩展类
      *
-     * @return
+     * @return ViewExpansionDelegate
      */
     ViewExpansionDelegate getViewExpansionDelegate();
-
 
     boolean isFinishing();
 

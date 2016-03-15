@@ -38,6 +38,7 @@ public abstract class ViewExpansionDelegate {
     }
 
     public final void destroy() {
+        setOnRetryListener(null);
         mViewLayer = null;
         mContentView = null;
     }

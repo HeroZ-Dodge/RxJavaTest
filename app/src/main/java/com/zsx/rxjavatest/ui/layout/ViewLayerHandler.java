@@ -4,9 +4,10 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
+// 动态代理
 public class ViewLayerHandler implements InvocationHandler {
 
-    public Object mObject;
+    public Object mObject; //  被代理对象
 
     public ViewLayerHandler() {
 

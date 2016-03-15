@@ -35,7 +35,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
         if (mPresenter != null) {
             mPresenter = null;
         }
-        if (mViewExpansionDelegate != null) { // 释放扩展视图
+        if (mViewExpansionDelegate != null) { // 释放扩展视图资源
             mViewExpansionDelegate.destroy();
         }
     }

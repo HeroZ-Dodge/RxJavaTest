@@ -60,6 +60,9 @@ public class DefaultViewExpansionDelegate extends ViewExpansionDelegate {
         }
     }
 
+    /**
+     * 显示加载页面
+     */
     @Override
     public View showProgressPage() {
         if (mProgressPage == null) {
@@ -75,6 +78,9 @@ public class DefaultViewExpansionDelegate extends ViewExpansionDelegate {
         return mProgressPage;
     }
 
+    /**
+     * 关闭加载页面
+     */
     @Override
     public void dismissProgressPage() {
         if (mProgressPage != null) {
@@ -82,6 +88,11 @@ public class DefaultViewExpansionDelegate extends ViewExpansionDelegate {
         }
     }
 
+    /**
+     * 显示错误页面
+     *
+     * @return
+     */
     @Override
     public View showErrorPage() {
         if (mErrorPage == null) {
@@ -106,6 +117,9 @@ public class DefaultViewExpansionDelegate extends ViewExpansionDelegate {
         return mErrorPage;
     }
 
+    /**
+     * 关闭错误页面
+     */
     @Override
     public void dismissErrorPage() {
         if (mErrorPage != null) {
